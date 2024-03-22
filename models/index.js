@@ -20,7 +20,7 @@ Product.belongsToMany(Tag, {
     model: ProductTag,
     unique: false
   },
-  as: 'product-tags',
+  as: 'product_tags',
   foreignKey: 'product_id'
 });
 
