@@ -4,47 +4,103 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // The `/api/products` endpoint
 
 // get all products
-router.get('/', (req, res) => {
-  // find all products
+router.get('/', async (req, res) => {
+  try {
+    const productData = await Product.findAll({
+      include: [{ model: Category }, { model: Tag }],
+    });
+    res.status(200).json(productData);
+  } catch(err) {
+    res.status(500).json(err);
+  }
   // be sure to include its associated Category and Tag data
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
+  try {
+    const productData = await Product.findbyPk(req.params.id, {
+      include: [{ model: Category }, { model: Tag }],
+    });
+
+    if (!productData) {
+      res.status(404).json({ message: 'No product with that id.'})
+    }
+    res.status(200).json(productData);
+  } catch(err) {
+    res.status(500).json(err);
+  }
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
 });
 
 // create new product
-router.post('/', (req, res) => {
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
-  Product.create(req.body)
-    .then((product) => {
-      // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (req.body.tagIds.length) {
-        const productTagIdArr = req.body.tagIds.map((tag_id) => {
-          return {
-            product_id: product.id,
-            tag_id,
-          };
-        });
-        return ProductTag.bulkCreate(productTagIdArr);
-      }
-      // if no product tags, just respond
-      res.status(200).json(product);
-    })
-    .then((productTagIds) => res.status(200).json(productTagIds))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json(err);
+router.post('/', async (req, res) => {
+  try {
+    // Create the product
+    const productData = await Product.create({
+      product_name: req.body.product_name,
+      price: req.body.price,
+      stock: req.body.stock,
     });
+
+    // If there are tagIds, create product-tag associations
+    if (req.body.tagIds && req.body.tagIds.length) {
+      const productTagIdArr = req.body.tagIds.map((tag_id) => {
+        return {
+          product_id: productData.id,
+          tag_id,
+        };
+      });
+      await ProductTag.bulkCreate(productTagIdArr);
+    }
+
+    // Respond with the created product data
+    res.status(200).json(productData);
+  } catch (err) {
+    // Handle errors
+    console.log(err);
+    res.status(500).json(err);
+  }
+  // try {
+  //   const productData = await Product.create({
+  //     product_name: req.body.product_name,
+  //     price: req.body.price,
+  //     stock: req.body.stock,
+  //     tag_id: req.body.tagIds,
+  //   });
+  //   res.status(200).json(productData);
+  // } catch(err) {
+  //   res.status(500).json(err);
+  // }
+  // /* req.body should look like this...
+  //   {
+  //     product_name: "Basketball",
+  //     price: 200.00,
+  //     stock: 3,
+  //     tagIds: [1, 2, 3, 4]
+  //   }
+  // */
+  // Product.create(req.body)
+  //   .then((product) => {
+  //     // if there's product tags, we need to create pairings to bulk create in the ProductTag model
+  //     if (req.body.tagIds.length) {
+  //       const productTagIdArr = req.body.tagIds.map((tag_id) => {
+  //         return {
+  //           product_id: product.id,
+  //           tag_id,
+  //         };
+  //       });
+  //       return ProductTag.bulkCreate(productTagIdArr);
+  //     }
+  //     // if no product tags, just respond
+  //     res.status(200).json(product);
+  //   })
+  //   .then((productTagIds) => res.status(200).json(productTagIds))
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.status(400).json(err);
+  //   });
 });
 
 // update product
