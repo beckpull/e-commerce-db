@@ -10,12 +10,12 @@ router.get('/', async (req, res) => {
       include: [
         { 
           model: Category,
-          attributes: ['id', 'category_name'] 
+          // attributes: ['id', 'category_name'] 
         }, 
         { 
           model: Tag,
           as: 'product_tags',
-          attributes: ['id', 'tag_name'] 
+          // attributes: ['id', 'tag_name'] 
         }
       ],
     });
@@ -39,12 +39,12 @@ router.get('/:id', async (req, res) => {
       include: [
         { 
           model: Category,
-          attributes: ['id', 'category_name'] 
+          // attributes: ['id', 'category_name'] 
         }, 
         { 
           model: Tag,
           as: 'product_tags',
-          attributes: ['id', 'tag_name'] 
+          // attributes: ['id', 'tag_name'] 
         }
       ],
     });
@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).json(productData);
   } catch(err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
@@ -64,11 +64,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     // Create the product
-    const productData = await Product.create({
-      product_name: req.body.product_name,
-      price: req.body.price,
-      stock: req.body.stock,
-    });
+    const productData = await Product.create(req.body);
 
     // If there are tagIds, create product-tag associations
     if (req.body.tagIds && req.body.tagIds.length) {
@@ -83,10 +79,10 @@ router.post('/', async (req, res) => {
 
     // Respond with the created product data
     res.status(200).json(productData);
-  } catch (err) {
+  } catch (error) {
     // Handle errors
-    console.log(err);
-    res.status(500).json(err);
+    // console.log(err);
+    res.status(500).json(error);
   }
 });
 
@@ -143,15 +139,14 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id,  
       },
     });
-
     if (!productData) {
       res.status(404).json({ message: 'No product with that id found.'});
       return;
     }
 
-    res.status(200).json(productData);
+    res.status(200).json({message: `${productData} product has been deleted.`});
   } catch(err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json(err);
   }
 });
