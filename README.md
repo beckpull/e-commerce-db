@@ -131,7 +131,7 @@ _To get a local copy up and running follow these simple example steps:_
       <img src="./assets/img/qr.png" width="200">
   </a> 
   </br></br>
-  <p><strong><i>The following are the example outputs:</i></strong></p>
+  <p><strong><i>The following are the example outputs for each GET request:</i></strong></p>
   </br></br>
   <a href="https://github.com/beckpull/e-commerce-db">
    <p>GET /products:</p>
@@ -147,6 +147,8 @@ _To get a local copy up and running follow these simple example steps:_
     <p>GET /tags:</p>
     <img src="./assets/img/getTags.png" width="500">
   </a>
+</br></br>
+  <p><i>View demo video above for POST, PUT and DELETE request examples.</i></p>
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
