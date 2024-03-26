@@ -123,7 +123,7 @@ router.put('/:id', (req, res) => {
         });
       }
 
-      return res.json(product);
+      return res.json(`${product} product has been updated.`);
     })
     .catch((err) => {
       // console.log(err);

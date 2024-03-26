@@ -17,12 +17,12 @@
 <h1 align="center">E-Commerce Database Integration</h1>
 
   <p align="center">
-This is an example of some back end processes one could use for their e-commerce website (which uses the latest technologies) to enable their company to compete with other e-commerce companies
+This is an example of some back-end processes one could use for their e-commerce website (which uses the latest technologies) to enable their company to compete with other e-commerce companies
     <br />
     <a href="https://github.com/beckpull/e-commerce-db"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://drive.google.com/file/d/1Tv-WVJPkxhrQiLhGpHmbhtl6tIY7OvaY/view">View Demo</a>
     ·
     <a href="https://github.com/beckpull/e-commerce-db/issues">Report Bug</a>
     ·
@@ -67,7 +67,7 @@ This is an example of some back end processes one could use for their e-commerce
 
 - This application is geared towards anybody looking for an easy-to-use database integration for their existing e-commerce website.
 
-- The goal of this application is for companies to be able to easily keep track of and manage inventories and items within their website. 
+- The goal of this application is for companies to be able to easily keep track of and manage inventories and correlating items within their website. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -77,6 +77,7 @@ This is an example of some back end processes one could use for their e-commerce
 
 * ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 * ![NodeJS]
+* ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 * ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 * ![Sequelize](https://img.shields.io/badge/sequelize.js-323330?style=for-the-badge&logo=sequelize&logoColor=blue)
 * ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
@@ -91,7 +92,7 @@ This is an example of some back end processes one could use for their e-commerce
 
 ### Prerequisites
 
-_This application has a few dependencies, to install individually onto your machine, navigate to the directory this code lives in and type these commands into your Terminal / Git Bash:_
+_This application has several dependencies, to install individually onto your machine, navigate to the directory this code lives in and type these commands into your Terminal / Git Bash:_
   ```sh
   npm i express
   npm i sequelize
@@ -121,60 +122,44 @@ _To get a local copy up and running follow these simple example steps:_
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
- 
+## Usage 
 <!-- Link to video demo -->
- <!-- * **Click [here](#) or scan the below QR code to watch a demo video on how to use this application.**
- </br></br>
+ * **Click [here](https://drive.google.com/file/d/1Tv-WVJPkxhrQiLhGpHmbhtl6tIY7OvaY/view) or scan the below QR code to watch a demo video on how to use this application.**
+</br></br>
 <div align="center">
- <a href="https://github.com/beckpull/e-commerce-db">
-    <img src="./assets/qr.png" alt="Welcome screen labeled 'Employee Manager'" width="200">
+  <a href="https://github.com/beckpull/e-commerce-db">
+      <img src="./assets/img/qr.png" width="200">
   </a> 
+  </br></br>
+  <p><strong><i>The following are the example outputs:</i></strong></p>
+  </br></br>
   <a href="https://github.com/beckpull/e-commerce-db">
-   <p>This is what users can expect upon installing/running my app:</p>
-    <img src="./assets/pic1.png" alt="Welcome screen labeled 'Employee Manager'" width="700">
+   <p>GET /products:</p>
+    <img src="./assets/img/getProducts.png" width="500">
   </a>
-  <p>The following are the example outputs:</p>
+  </br></br>
   <a href="https://github.com/beckpull/e-commerce-db">
-    <p>View All Employees:</p>
-    <img src="./assets/viewAllEmps.png" alt="" width="700">
+    <p>GET /categories:</p>
+    <img src="./assets/img/getCategories.png" width="500">
   </a>
-    <a href="https://github.com/beckpull/e-commerce-db">
-    <p>View All Roles:</p>
-    <img src="./assets/viewAllRoles.png" alt="" width="600">
-  </a>
-    <a href="https://github.com/beckpull/e-commerce-db">
-    <p>View All Departments:</p>
-    <img src="./assets/viewDept.png" alt="" width="600">
-  </a>
+  </br></br>
   <a href="https://github.com/beckpull/e-commerce-db">
-    <p>View Employees by Department (from my 'Research and Development' department)</p>
-    <img src="./assets/viewEmpByDept.png" alt="" width="600">
+    <p>GET /tags:</p>
+    <img src="./assets/img/getTags.png" width="500">
   </a>
-    <a href="https://github.com/beckpull/e-commerce-db">
-    <p>View Utilized Budget by Department (from my 'Research and Development' department)</p>
-    <img src="./assets/deptBudget.png" alt="" width="700">
-  </a>
-  <p align="right"><i>#</i></p>
-
-</div> -->
-
+</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
 
-
-
-<!-- <img src="./assets/schema-roadmap.png">
+<img src="./assets/img/schema-roadmap.png">
 <div align="right">
-  <p><i>This was how I chose to set up my schema for this project - including one <strong>departments</strong> table, one <strong>roles</strong> table (with foreign key dept_id which references departments.id) and one <strong>employees</strong> table (with foreign keys role_id which references role.id and manager_id which self-references their manager's employee id, or in other words, employees.id)</i></p>
+  <p><i>This was how I chose to set up my schema for this project</i></p>
 </div>
 </br></br></br>
-<img src="./assets/js-roadmap.png"> -->
+<img src="./assets/img/js-roadmap.png">
 <div align="right">
   <p><i>This was my roadmap to completing all of the acceptance criteria</i></p>
 </div>

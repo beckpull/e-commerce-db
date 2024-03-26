@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
       res.status(404).json({ message: "No categories found." });
       return;
     }
-    
+
     res.status(200).json(categoryData);
     
   } catch (error) {
@@ -79,7 +79,7 @@ router.put('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(categoryData);
+    res.status(200).json({ message: `${categoryData} category has been updated.` });
 
   } catch (error) {
     console.log(error);
@@ -89,6 +89,24 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
+  try {
+    const categoryData = await Category.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!categoryData) {
+      res.status(404).json({ message: "No category with that id found." });
+      return;
+    }
+    
+    res.status(200).json({ message: `${categoryData} category has been deleted.`});
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;
